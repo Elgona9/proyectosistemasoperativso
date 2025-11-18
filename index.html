@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritmos de Planificación de CPU</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Simulador de Algoritmos de Planificación de CPU</h1>
+        
+        <div class="input-section">
+            <h2>Configuración de Procesos</h2>
+            
+            <div class="form-group">
+                <label for="algorithm">Algoritmo de Planificación:</label>
+                <select id="algorithm">
+                    <option value="fcfs">FCFS (First Come, First Served)</option>
+                    <option value="sjf">SJF (Shortest Job First)</option>
+                    <option value="srtf">SRTF (Shortest Remaining Time First)</option>
+                    <option value="rr">RR (Round Robin)</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="quantumGroup" style="display: none;">
+                <label for="quantum">Quantum:</label>
+                <input type="number" id="quantum" value="2" min="1">
+            </div>
+
+            <h3>Procesos</h3>
+            <div id="processInputs">
+                <div class="process-input">
+                    <label>Proceso:</label>
+                    <input type="text" class="process-name" value="P1" placeholder="Nombre">
+                    <label>Tiempo de Llegada:</label>
+                    <input type="number" class="arrival-time" value="0" min="0">
+                    <label>Tiempo de Ráfaga:</label>
+                    <input type="number" class="burst-time" value="5" min="1">
+                    <button class="btn-remove" onclick="removeProcess(this)">Eliminar</button>
+                </div>
+            </div>
+            
+            <button class="btn-add" onclick="addProcess()">Agregar Proceso</button>
+            <button class="btn-calculate" onclick="calculate()">Calcular</button>
+        </div>
+
+        <div id="results" class="results-section" style="display: none;">
+            <h2>Resultados</h2>
+            
+            <div class="gantt-section">
+                <h3>Diagrama de Gantt</h3>
+                <div id="ganttChart"></div>
+            </div>
+
+            <div class="table-section">
+                <h3>Métricas de Procesos</h3>
+                <table id="resultsTable">
+                    <thead>
+                        <tr>
+                            <th>Proceso</th>
+                            <th>Tiempo de Llegada</th>
+                            <th>Tiempo de Ráfaga</th>
+                            <th>Tiempo de Finalización</th>
+                            <th>Tiempo de Retorno</th>
+                            <th>Tiempo de Espera</th>
+                            <th>Tiempo de Respuesta</th>
+                            <th>Penalidad</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsBody"></tbody>
+                    <tfoot id="resultsFooter"></tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="scheduler.js"></script>
+</body>
+</html>
